@@ -34,9 +34,6 @@ specificProduct.update({ description: "this is updated" });
 //delete
 database.ref(`products:/${newProductRef.getKey()}`).remove();
 
-const fetchProducts = fetch(firebaseURL);
-console.log(fetchProducts);
-
 async function firebaseThroughApi() {
   async function getData() {
     console.log("getting data through fetch");
