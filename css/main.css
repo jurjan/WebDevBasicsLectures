@@ -2,13 +2,17 @@
   background: #e7c6ff;
 }
 
+body {
+  background: #ddd2fc;
+}
+
 nav {
   /* display: flex;
   flex-direction: row;
   height: 30px;
   width: 100%;
   padding: 0px 20px 30px 30px; */
-  border-bottom: 2px solid #c8b6ff;
+  border-bottom: 2px solid #ddd2fc;
   align-items: baseline;
 }
 

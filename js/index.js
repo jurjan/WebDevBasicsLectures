@@ -34,6 +34,9 @@ specificProduct.update({ description: "this is updated" });
 //delete
 database.ref(`products:/${newProductRef.getKey()}`).remove();
 
+const fetchProducts = fetch(firebaseURL);
+console.log(fetchProducts);
+
 async function firebaseThroughApi() {
   async function getData() {
     console.log("getting data through fetch");
@@ -85,3 +88,15 @@ async function firebaseThroughApi() {
 }
 
 firebaseThroughApi();
+
+async function fetchHTML(path = "../html/navigation.html") {
+  let fetchResponse = await fetch(path);
+  let htmlString = await fetchResponse.text();
+  return htmlString;
+}
+
+//IIFE - Immediately Invoke Function Expression
+(async function (path = "../html/navigation.html") {
+  let element = document.body;
+  element.insertAdjacentHTML("afterbegin", await fetchHTML(path));
+})();
