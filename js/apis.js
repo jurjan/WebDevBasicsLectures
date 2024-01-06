@@ -84,7 +84,9 @@ async function getElixirs() {
 function fillCardData(card, elixir, i) {
   card.setAttribute("id", "position-" + i);
   card.querySelector(".card-title").innerText = elixir.name;
-  //
+  card.querySelector(".card-subtitle").innerText =
+    "Difficulty: " + elixir.difficulty;
+  card.querySelector(".card-text").innerText = "Effects: " + elixir.effect;
 }
 
 async function generateContent(div) {
@@ -119,3 +121,51 @@ async function generateContent(div) {
 }
 
 generateContent(originalDiv);
+
+//If you do not wish to have a function as getElixirs(), here is a function to just get all records from the database
+
+async function getAllObjects() {
+  try {
+    const response = await fetch(
+      "https://wizard-world-api.herokuapp.com/Elixirs"
+    );
+
+    const data = await response.json(); //Still a promise
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+//Get specific wizard object
+
+async function getSpecificObject(parameter) {
+  try {
+    let fullWizardInfo = await fetch(
+      `https://wizard-world-api.herokuapp.com/Wizards/${parameter}`
+      //"https://wizard-world-api.herokuapp.com/Wizards/" + inventor.id
+    );
+    let singleObj = await fullWizardInfo.json();
+    return singleObj;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+//A more generic function
+async function getListOfObjectsApi(url) {
+  try {
+    return (await fetch(url)).json();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+//A more generic function with param
+async function getListOfObjectsApi(url, param) {
+  try {
+    return (await fetch(url)).json();
+  } catch (e) {
+    console.error(e);
+  }
+}
